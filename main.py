@@ -1,11 +1,5 @@
 import sqlite3
 from aifc import Error
-
-import flask
-from flask import request, Flask
-
-app = Flask(__name__)
-
 def create_connection(db_file):
     conn = None
     try:
@@ -14,6 +8,14 @@ def create_connection(db_file):
         print(e)
 
     return conn
+verbinden = create_connection("datenbank.db")
+
+import flask
+from flask import request, Flask
+
+app = Flask(__name__)
+
+
 
 def select_all_tasks(conn):
     """
@@ -37,8 +39,17 @@ def create_project(conn, project):
     conn.commit()
     return ""
 
+def Name_hinzu(conn, Namen):
+    sql = "INSERT INTO familieXfreunde(Namen, Geschlecht, FreundeOrFamily) VALUES(?,?,?);"
+    cur = conn.cursor()
+    cur.execute(sql, Namen)
+    conn.commit()
+    return ""
+
+
 @app.route('/login')
 def login():
+    k = request.args.get("name")
     error = None
     create_connection("datenbank.db")
     return request.args.get('name')
@@ -52,6 +63,15 @@ def eink_hinzu():
     b = request.args.get("Mitglied")
     c = request.args.get("Menge")
     return create_project(einkaufsliste, (a, b, c))
+
+@app.route('/namentabelle')
+def namen_angeben():
+    error = None
+    familieXfreunde = create_connection("datenbank.db")
+    o = request.args.get("Namen")
+    f = request.args.get("Geschlecht")
+    g = request.args.get("FreundeOrFamily")
+    return Name_hinzu(familieXfreunde, (o, f, g))
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0" , port='8000', debug=True)

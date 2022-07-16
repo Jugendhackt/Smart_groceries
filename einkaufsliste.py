@@ -4,15 +4,13 @@ from aifc import Error
 import flask
 from flask import request, Flask
 
-
-
-
 app = Flask(__name__)
+
 
 @app.route('/')
 def hello_world82():
-
     return 'Welcome to Smart Groceries'
+
 
 @app.route('/shoppinglist')
 def hello_world2():
@@ -21,9 +19,7 @@ def hello_world2():
     return select_all_tasks(conn)
 
 
-
 def select_all_tasks(conn):
-
     cur = conn.cursor()
     cur.execute("SELECT * FROM produktinformationen;")
 
@@ -33,28 +29,22 @@ def select_all_tasks(conn):
 
 
 def create_connection(db_file):
-
-
     conn = None
     try:
         conn = sqlite3.connect(db_file)
     except Error as e:
         print(e)
 
-
     return conn
 
 
-
 def select_task_by_priority(conn, priority):
-
     cur = conn.cursor()
     cur.execute("SELECT * FROM produktinformationen", (priority,))
 
     rows = cur.fetchall()
 
     return flask.jsonify(rows)
-
 
 
 if __name__ == '__main__':

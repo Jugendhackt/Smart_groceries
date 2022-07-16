@@ -1,4 +1,6 @@
-﻿# Smart groceries
+
+# smart groceries
+
 
 Dies ist eine App, die eine Einkaufsliste für Gruppen bereitstellt.
 Funktionen:

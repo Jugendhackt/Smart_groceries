@@ -1,0 +1,108 @@
+WindowManager:
+    StartScreen:
+    GroceryList:
+    ShoppingCart:
+    Product:
+
+
+<StartScreen>:
+    name: "main"
+
+    GridLayout:
+        cols: 1
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Name: "
+
+            TextInput:
+                id: name
+                multiline: False
+                background_color: (0.3, 0.4, 0.5, 1)
+
+            Label:
+                text: "Last Name: "
+
+            TextInput:
+                id: last_name
+                multiline: False
+                background_color: (0.3, 0.4, 0.5, 1)
+
+        Button:
+            text: "Submit"
+            on_release:
+                app.root.current = "list" if name.text and last_name.text else "main"
+
+
+<GroceryList>:
+    name: "list"
+
+    GridLayout:
+        cols: 1
+
+        GridLayout:
+            cols: 3
+
+            Label:
+                text: "Name of product: "
+
+            TextInput:
+                id: product_name
+                multiline: False
+                background_color: (0.3, 0.4, 0.5, 1)
+
+            Button:
+                text: "Submit"
+                background_color: (0.2, 0.4, 0.4, 1)
+                on_release:
+                    app.root.current = "product" if product_name.text else "list"
+
+        GridLayout:
+            cols: 2
+
+            Button:
+                text: "Go Back"
+                on_release:
+                    app.root.current = "main"
+
+            Button:
+                text: "shopping_cart"
+                on_release:
+                    app.root.current = "shopping_cart"
+
+
+<ShoppingCart>:
+    name: "shopping_cart"
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            text: "Shopping cart: "
+
+        Button:
+            text: "Go Back to search"
+            on_release:
+                app.root.current = "list"
+
+        Button:
+            text: "Go Back to product"
+            on_release:
+                app.root.current = "product"
+
+
+<Product>:
+    name: "product"
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            text: "Information of product: "
+
+        Button:
+            text: "Go Back"
+            on_release:
+                app.root.current = "list"

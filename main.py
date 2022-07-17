@@ -40,7 +40,7 @@ def create_project(conn, project):
     return ""
 
 def Name_hinzu(conn, Namen):
-    sql = "INSERT INTO familieXfreunde(Namen, Geschlecht, FreundeOrFamily) VALUES(?,?,?);"
+    sql = "INSERT INTO familieXfreunde(Namen,  Geschlecht, FreundeOrFamily, Nachname) VALUES(?,?,?,?);"
     cur = conn.cursor()
     cur.execute(sql, Namen)
     conn.commit()
@@ -69,9 +69,10 @@ def namen_angeben():
     error = None
     familieXfreunde = create_connection("datenbank.db")
     o = request.args.get("Namen")
+    u = request.args.get("Nachname")
     f = request.args.get("Geschlecht")
     g = request.args.get("FreundeOrFamily")
-    return Name_hinzu(familieXfreunde, (o, f, g))
+    return Name_hinzu(familieXfreunde, (o, u, f, g))
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0" , port='8000', debug=True)

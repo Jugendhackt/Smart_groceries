@@ -108,6 +108,17 @@ def namen_angeben():
     g = request.args.get("FreundeOrFamily")
     return Name_hinzu(familieXfreunde, (o, u, f, g))
 
+@app.route('/products')
+def hello_world832():
+    conn = create_connection("datenbank.db")
+    chosen = request.args.get("Produktname")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM produktinformationen WHERE Produktname = ?", (chosen,))
+
+    row = cur.fetchone()
+
+    return flask.jsonify(row)
+
 
 """"@app.route('/löschen')
 def Produkt_Namen_löschen():

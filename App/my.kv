@@ -8,6 +8,9 @@ WindowManager:
 <StartScreen>:
     name: "main"
 
+    first_name: first_name
+    last_name: last_name
+
     GridLayout:
         cols: 1
 
@@ -18,7 +21,7 @@ WindowManager:
                 text: "Name: "
 
             TextInput:
-                id: name
+                id: first_name
                 multiline: False
                 background_color: (0.3, 0.4, 0.5, 1)
 
@@ -33,11 +36,14 @@ WindowManager:
         Button:
             text: "Submit"
             on_release:
-                app.root.current = "list" if name.text and last_name.text else "main"
+                root.btn()
+                app.root.current = "list" if first_name.text and last_name.text else "main"
 
 
 <GroceryList>:
     name: "list"
+
+    product_name: product_name
 
     GridLayout:
         cols: 1
@@ -57,6 +63,7 @@ WindowManager:
                 text: "Submit"
                 background_color: (0.2, 0.4, 0.4, 1)
                 on_release:
+                    root.btn()
                     app.root.current = "product" if product_name.text else "list"
 
         GridLayout:

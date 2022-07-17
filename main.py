@@ -40,7 +40,7 @@ def create_project(conn, project):
     return ""
 
 def Name_hinzu(conn, Namen):
-    sql = "INSERT INTO familieXfreunde(Namen, Nachname,  Geschlecht, FreundeOrFamily) VALUES(?,?,?,?);"
+    sql = "INSERT INTO familieXfreunde(Namen,  Geschlecht, FreundeOrFamily, Nachname) VALUES(?,?,?,?);"
     cur = conn.cursor()
     cur.execute(sql, Namen)
     conn.commit()

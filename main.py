@@ -72,7 +72,7 @@ def create_project(conn, project):
     return ""
 
 
-def Name_hinzu(conn, Namen):
+def name_hinzu(conn, Namen):
     sql = "INSERT INTO familieXfreunde(Namen,  Geschlecht, FreundeOrFamily, Nachname) VALUES(?,?,?,?);"
     cur = conn.cursor()
     cur.execute(sql, Namen)
@@ -106,7 +106,8 @@ def namen_angeben():
     u = request.args.get("Nachname")
     f = request.args.get("Geschlecht")
     g = request.args.get("FreundeOrFamily")
-    return Name_hinzu(familieXfreunde, (o, u, f, g))
+    return name_hinzu(familieXfreunde, (o, u, f, g))
+
 
 @app.route('/products')
 def hello_world832():

@@ -14,9 +14,20 @@ def hello_world82():
 
 @app.route('/shoppinglist')
 def hello_world2():
-    error = None
     conn = create_connection("datenbank.db")
     return select_all_tasks(conn)
+
+
+@app.route('/products')
+def hello_world832():
+    conn = create_connection("datenbank.db")
+    chosen = request.args.get("Produktname")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM produktinformationen WHERE Produktname = ?", (chosen,))
+
+    row = cur.fetchone()
+
+    return flask.jsonify(row)
 
 
 def select_all_tasks(conn):
@@ -36,15 +47,6 @@ def create_connection(db_file):
         print(e)
 
     return conn
-
-
-def select_task_by_priority(conn, priority):
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM produktinformationen", (priority,))
-
-    rows = cur.fetchall()
-
-    return flask.jsonify(rows)
 
 
 if __name__ == '__main__':

@@ -27,3 +27,4 @@ Login:
 
 Produktauswahl:
 -Man kann jetzt einzelne Produkte auswählen und die Produktinformationen sehen
+http://127.0.0.1:8000/products

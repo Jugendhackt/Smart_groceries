@@ -90,7 +90,7 @@ WindowManager:
             text: "Shopping cart: "
 
         Button:
-            text: "Go Back to search"
+            text: "Keep on shopping"
             on_release:
                 app.root.current = "list"
 
@@ -108,8 +108,110 @@ WindowManager:
 
         Label:
             text: "Information of product: "
+            background_color: 0.3, 0.4, 0.5, 1
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+					size: self.size
+					pos: self.pos
 
-        Button:
-            text: "Go Back"
-            on_release:
-                app.root.current = "list"
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Product name:"
+
+            Label:
+                text: ""
+
+            Label:
+                text: "EAN-Code: "
+                background_color: 0.1, 0.1, 0.1, 1
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+            Label:
+                text: ""
+                background_color: 0.1, 0.1, 0.1, 1
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+            Label:
+                text: "Brand: "
+
+            Label:
+                text: ""
+
+            Label:
+                text: "Price: "
+                background_color: 0.1, 0.1, 0.1, 1
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+            Label:
+                text: ""
+                background_color: 0.1, 0.1, 0.1, 1
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+            Label:
+                text: "Weight: "
+
+            Label:
+                text: ""
+
+            Label:
+                text: "Packaging: "
+                background_color: 0.1, 0.1, 0.1, 1
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+            Label:
+                text: ""
+                background_color: 0.1, 0.1, 0.1, 1
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+            Label:
+                text: "Nutrition values: "
+
+            Label:
+                text: ""
+
+        GridLayout:
+            cols: 2
+
+            Button:
+                text: "Add to cart"
+                on_release:
+                    app.root.current = "shopping_cart"
+
+            Button:
+                text: "Go Back"
+                on_release:
+                    app.root.current = "list"

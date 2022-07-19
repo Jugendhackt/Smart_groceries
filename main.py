@@ -50,20 +50,6 @@ def select_task_by_priority(conn, priority):
     return flask.jsonify(rows)
 
 
-def select_all_tasks(conn):
-    """
-    Query all rows in the tasks table
-    :param conn: the Connection object
-    :return:
-    """
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM produktinformationen")
-
-    rows = cur.fetchall()
-
-    return flask.jsonify(rows)
-
-
 def create_project(conn, project):
     sql = "INSERT INTO einkaufsliste(Produkt,Mitglied,Menge) VALUES(?, ?, ?);"
     cur = conn.cursor()
@@ -127,4 +113,4 @@ def Produkt_Namen_löschen():
     "DELETE FROM familieXfreunde ('Name"""
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port='8000', debug=True)
+    app.run(host="0.0.0.0", port=8000, debug=True)

@@ -4,7 +4,7 @@ from kivy.lang.builder import Builder
 from kivy.properties import ObjectProperty
 import requests
 
-keys = {}
+product_name = ""
 
 
 class StartScreen(Screen):
@@ -24,26 +24,32 @@ class GroceryList(Screen):
 
     def btn(self):
         print("Product Name:", self.product_name.text)
-        # global_product_name = self.product_name.text
-        # dic_name = {"Produktname": global_product_name}
-        # keys = requests.post("http://127.0.0.1:8000/products", dic_name)
-        # print(keys)
+        global product_name
+        product_name = self.product_name.text
+        dic_product_name = {"Produktname": product_name}
+        # data = requests.post("http://127.0.0.1:8000/Products", dic_product_name)
+        # print(data.text)
 
 
 class ShoppingCart(Screen):
-    pass
+    def on_enter(self, *args):
+        global product_name
+        dic_product_name = {"Produkt": product_name}
+        requests.post("http://127.0.0.1:8000/shoppinglist", dic_product_name)
 
 
 class Product(Screen):
-    '''product_name = keys["Produktname"]
-        ean = keys["EAN-Code"]
-        brand = keys["Marke"]
-        price = keys["Preis"]
-        product_weight = keys["Gewicht"]
-        packaging = keys["Verpackung"]
-        print(product_name)
-        print(ean)'''
-    pass
+    # product_name = keys["Produktname"]
+    # ean = keys["EAN-Code"]
+    # brand = keys["Marke"]
+    # price = keys["Preis"]
+    # product_weight = keys["Gewicht"]
+    # packaging = keys["Verpackung"]
+    # print(product_name)
+    # print(ean)
+    def on_enter(self, *args):
+        global product_name
+        self.product.text = product_name
 
 
 class WindowManager(ScreenManager):

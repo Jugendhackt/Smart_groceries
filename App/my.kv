@@ -26,7 +26,7 @@ WindowManager:
                 background_color: (0.3, 0.4, 0.5, 1)
 
             Label:
-                text: "Last Name: "
+                text: "Last name: "
 
             TextInput:
                 id: last_name
@@ -70,12 +70,12 @@ WindowManager:
             cols: 2
 
             Button:
-                text: "Go Back"
+                text: "Go back"
                 on_release:
                     app.root.current = "main"
 
             Button:
-                text: "shopping_cart"
+                text: "Shopping cart"
                 on_release:
                     app.root.current = "shopping_cart"
 
@@ -95,13 +95,15 @@ WindowManager:
                 app.root.current = "list"
 
         Button:
-            text: "Go Back to product"
+            text: "Go back to product"
             on_release:
                 app.root.current = "product"
 
 
 <Product>:
     name: "product"
+
+    product: product
 
     GridLayout:
         cols: 1
@@ -123,6 +125,7 @@ WindowManager:
                 text: "Product name:"
 
             Label:
+                id: product
                 text: ""
 
             Label:
